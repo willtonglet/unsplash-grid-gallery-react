@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SearchBar from "./components/SearchBar";
+import ImageList from "./components/ImageList";
 
-function App() {
+import useImages from "./hooks/useImages";
+
+import { MainStyles } from "./components/styles";
+
+const App = () => {
+  const [images, search] = useImages("cars");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainStyles>
+      <SearchBar onSubmit={search} />
+      <ImageList images={images} />
+    </MainStyles>
   );
-}
+};
 
 export default App;
